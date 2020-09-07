@@ -60,7 +60,7 @@ wsl --list --verbose
 wsl --set-default Ubuntu-20.04
 ```
 
-# Install and configure linux tools
+# Install linux tools
 
 Open the Ubuntu Terminal
 
@@ -83,25 +83,8 @@ jackd -d dummy -r48000 -p128
 
 ## Install jacktrip
 
-### Should be easy - but not working!!
-```
-wget https://ccrma.stanford.edu/software/jacktrip/linux/jacktrip_1.1-1.deb
-sudo dpkg -i jacktrip_1.1-1.deb
-```
 
-### Compile from source the old way using qmake (QT Tools)
-
-Haven't got an exact record of the syntax
-```
-git clone https://github.com/jacktrip/jacktrip.git
-cd jacktrip/src/
-
-sudo apt install qtbase5-dev qt5-qmake
-qtchooser -run-tool=qmake -qt=qt5 jacktrip.pro
-qmake jacktrip.pro
- make release
-```
-
+### Compile from source - latest
 ```
 
 sudo apt install -y --no-install-recommends build-essential librtaudio-dev qt5-default autoconf automake libtool make libjack-jackd2-dev
@@ -121,4 +104,52 @@ Check you have it installed
 ```
 cd ~
 jacktrip -v
+```
+If you see something like this, you have successfully installed Jacktrip:
+```
+JackTrip VERSION: 1.xx
+Copyright (c) 2008-2020 Juan-Pablo Caceres, Chris Chafe.
+SoundWIRE group at CCRMA, Stanford University
+```
+
+
+# Install windows tools
+
+Instructions for Windows are up-to-date (as of 5-Aug-2020, v1.2.1 stable) and available from [CCRMA](https://ccrma.stanford.edu/software/jacktrip/windows/index.html)
+
+The steps are
+
+- install asio4all (this is the only known working driver on windows)
+- install jack
+- intall JackTrip
+
+The installer for jack should put the jack executable at `C:/Program Files (x86)/Jack/jackd.exe`. If it is not, please let me know and I will make the scripts more intelligent.
+
+You can choose where to put JackTrip.exe. These scripts require the JackTrip executable to be placed at `C:\jacktrip_v1.2.1\jacktrip.exe`
+
+# Test that everything works
+
+Using PowerShell (or Microsoft Terminal) navigate to the root of this repository and do the following...
+
+## Start the WSL processes...
+
+Note that interactions JACK on WSL needs root privileges so you will be prompted for you password twice - once for jack and once for JackTrip
+
+```
+.\start_wsl.ps1
+```
+
+## Start the local processes...
+
+Spawn two more windows - one each for jack and JackTrip on windows
+```
+.\start_local.ps1
+```
+
+## Test that audio works...
+
+Start a metronome on WSL and connect it up to the left speaker, then disconnect/stop whilst leaving the jack/JackTrip processes running for future use.
+
+```
+.\test_metronome.ps1
 ```
