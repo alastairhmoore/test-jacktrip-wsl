@@ -142,7 +142,8 @@ Note that interactions JACK on WSL needs root privileges. The script runs proces
 ## Start the local processes...
 
 Spawn two more windows - one each for jack and JackTrip on windows
-```
+
+```PowerShell
 .\start_local.ps1
 ```
 
@@ -150,6 +151,34 @@ Spawn two more windows - one each for jack and JackTrip on windows
 
 Start a metronome on WSL and connect it up to the left speaker, then disconnect/stop whilst leaving the jack/JackTrip processes running for future use.
 
-```
+```PowerShell
 .\test_metronome.ps1
 ```
+
+# Integrate TASCAR
+
+## Install
+Follow instructions from [tascar.org](http://www.tascar.org/install.html)
+
+For Ubuntu 20.04 these are
+
+```bash
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B7D6CDF547DA4ABD
+sudo apt-add-repository 'deb [arch=amd64] http://apt.hoertech.de/ focal universe'
+sudo apt update
+sudo apt install tascarpro
+```
+
+## Test
+
+```PowerShell
+.\start_wsl.ps1
+.\start_local.ps1
+.\test_tascar.ps1
+```
+
+You should hear
+
+- a harmonic complex (tone) to the left
+- pink noise to the right
+- a click train circling your head on the horizontal plane
