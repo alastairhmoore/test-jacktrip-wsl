@@ -1,29 +1,11 @@
-""
-""
 "Launching jackd process on wsl in new terminal window..."
-""
 Start-Process -FilePath "wsl" `
-  -ArgumentList 'sudo jackd -d dummy -p 128'
-"Enter your wsl sudo password in the new window..."
-$dummy = Read-Host -Prompt 'Then press any key here to continue'
+  -ArgumentList '-u root jackd -d dummy -p 128'
 
-""
-""
 "Launching jacktrip process on wsl in new terminal window..."
-""
 Start-Process -FilePath "wsl" `
-  -ArgumentList "sudo jacktrip -s --nojackportsconnect"
-"Enter your wsl sudo password in the new window..."
-$dummy = Read-Host -Prompt 'Then press any key here to continue'
+  -ArgumentList "-u root jacktrip -s --nojackportsconnect"
 
-""
-""
-"Done...list of running processes should now show jackd and jacktrip"
-""
-$dummy = Read-Host -Prompt 'Press any key to check, then q to finish'
-wsl top
-
-# Start-Process -FilePath "wsl" `
-#   -ArgumentList "sudo jacktrip -s --nojackportsconnect" `
-#   -Wait `
-#   -RedirectStandardError "log_wsl_jacktrip_errors.txt"
+"Done...filtered list of running processes should now show jackd and jacktrip"
+wsl bash -c 'ps -e | grep "jack"'
+$dummy = Read-Host -Prompt 'Press any key to return'
