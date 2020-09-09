@@ -133,7 +133,7 @@ Using PowerShell (or Microsoft Terminal) navigate to the root of this repository
 
 ## Start the WSL processes...
 
-Note that interactions JACK on WSL needs root privileges so you will be prompted for you password twice - once for jack and once for JackTrip
+Note that interactions JACK on WSL needs root privileges. The script runs processes on WSL as the root user (of the distribution). This is safe enough *as long as you run this script from a normal shell in windows* (i.e. don't do a 'run as administrator')
 
 ```
 .\start_wsl.ps1
