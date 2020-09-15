@@ -73,8 +73,8 @@ Get it using this [Microsoft Store link](https://www.microsoft.com/en-gb/p/ubunt
 
 Ubuntu terminal
 ```bash
-$ sudo apt update
-$ sudo apt upgrade
+sudo apt update
+sudo apt upgrade
 ```
 
 The rest of these instructions assume you only have one WSL distribution installed or that you are using your default distribution.
