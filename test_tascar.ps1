@@ -25,4 +25,4 @@ $dummy = Read-Host -Prompt 'Verify that you can hear the audio.../nPress return 
 # disconnect and end the metronome process
 & 'C:/Program Files (x86)/Jack/jack_disconnect.exe' ($client_ip + ':receive_1') system:playback_1
 & 'C:/Program Files (x86)/Jack/jack_disconnect.exe' ($client_ip + ':receive_2') system:playback_2
-wsl -u root bash -c "pkill -9 -f tascar_cli"
+wsl -u root bash -c "pkill -f tascar_cli"
