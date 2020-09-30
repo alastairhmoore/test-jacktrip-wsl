@@ -10,19 +10,15 @@ $client_ip=Get-WSL2IPAdrress
 Start-Process -FilePath "wsl" `
   -ArgumentList "-u root tascar_cli tascar/binaural_demo.tsc"
 
-# wait a moment for the metronome to expose its ports
-# show the list of ports (useful for debugging)
-# connect up the metronome to jacktrip
-#wsl -u root bash -c "sleep 0.1; jack_lsp; jack_connect metro:100_bpm JackTrip:send_1"
-wsl -u root bash -c "sleep 0.2; jack_lsp -c"
-
 ""
-"The output above shows a list of connections and should include:"
+"Showing jack connections for debug purposes. The list should include:"
 "render.main:out_l"
 "    JackTrip:send_1"
 "render.main:out_r"
 "    JackTrip:send_2"
-$dummy = Read-Host -Prompt 'Press return to continue'
+""
+"Connections:"
+wsl -u root bash -c "sleep 0.2; jack_lsp -c"
 
 
 # connect jactrip to local soundcard
